@@ -1,9 +1,9 @@
 /*
-Використовуй функцію createAsyncThunk для оголошення асинхронних
+Використовуй createAsyncThunk для оголошення асинхронних
 генераторів екшенів та виконання HTTP-запитів.
 Обробку екшенів та зміну даних у стані Redux зроби за допомогою createSlice.
-*/ /*
-одержання масиву контактів (метод GET) запитом.
+*/
+/* одержання масиву контактів (метод GET) запитом.
 Базовий тип екшену "contacts/fetchAll" */
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -24,14 +24,13 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-/*
-додавання контакту (метод POST).
+/*додавання контакту (метод POST).
 Базовий тип екшену "contacts/addContact" */
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async (contact, thunkAPI) => {
+  async ({name, number}, thunkAPI) => {
     try {
-      const response = await axios.post('/contacts', { name:contact.name, number: contact.number });
+      const response = await axios.post('/contacts', { name, number });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -39,8 +38,7 @@ export const addContact = createAsyncThunk(
   }
 );
 
-/*
-  видалення контакту (метод DELETE).
+/*  видалення контакту (метод DELETE).
   Базовий тип екшену "contacts/deleteContact". */
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
