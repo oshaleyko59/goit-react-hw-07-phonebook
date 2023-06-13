@@ -3,7 +3,8 @@ import { MdClose } from 'react-icons/md';
 
 import PropTypes from 'prop-types';
 import { Item, Phone, DeleteBtn } from './styled';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
+//import { deleteContact } from 'redux/contactsSlice';
 
 export const ContactListItem = ({contact}) => {
   const dispatch = useDispatch();

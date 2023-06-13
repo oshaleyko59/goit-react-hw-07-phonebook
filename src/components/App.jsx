@@ -12,7 +12,7 @@
 */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/operations/fetchContacts';
+import { fetchContacts } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
 import { ContactForm } from './ContactForm';
 import { ContactList } from './ContactList';
@@ -36,10 +36,9 @@ export const App = () => {
       <ContactForm />
       <Header as="h2">Contacts</Header>
       <Filter />
-      <ContactList />
+      {!isLoading && !error && <ContactList />}
       {isLoading && <p>Loading contacts...</p>}
       {error && <p>{error}</p>}
-    {/*   <p>{list.length > 0 && JSON.stringify(list, null, 2)}</p> */}
     </div>
   );
 };
